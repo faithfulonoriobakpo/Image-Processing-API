@@ -1,0 +1,19 @@
+{
+  "name": "image-processing-api",
+  "version": "1.0.0",
+  "description": "An application to process images to different size and formats",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/faithfulonoriobakpo/Image-Processing-API.git"
+  },
+  "author": "Faithful Onoriobakpo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faithfulonoriobakpo/Image-Processing-API/issues"
+  },
+  "homepage": "https://github.com/faithfulonoriobakpo/Image-Processing-API#readme"
+}
