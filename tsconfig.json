@@ -5,7 +5,8 @@
     "lib": ["ES2018", "DOM"], 
     "outDir": "./build",                        
     "strict": true,                           
-    "noImplicitAny": true,                 
+    "noImplicitAny": true,
+    "esModuleInterop": true,             
   },
   "exclude": ["node_modules", "spec", "./build"]
 }
