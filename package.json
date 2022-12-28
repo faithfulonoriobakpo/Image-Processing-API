@@ -27,6 +27,7 @@
     "@types/node": "^18.11.18",
     "@types/nodemon": "^1.19.2",
     "@types/prettier": "^2.7.2",
+    "@types/supertest": "^2.0.12",
     "eslint": "^8.30.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.8.1",
@@ -38,6 +39,7 @@
     "fs": "^0.0.1-security",
     "jasmine": "^4.5.0",
     "jasmine-spec-reporter": "^7.0.0",
-    "sharp": "^0.31.3"
+    "sharp": "^0.31.3",
+    "supertest": "^6.3.3"
   }
 }
