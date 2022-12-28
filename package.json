@@ -1,5 +1,4 @@
 {
-  "type": "module",
   "name": "image-processing-api",
   "version": "1.0.0",
   "description": "An application to process images to different size and formats",
