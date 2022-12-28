@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/faithfulonoriobakpo/Image-Processing-API/issues"
   },
-  "homepage": "https://github.com/faithfulonoriobakpo/Image-Processing-API#readme"
+  "homepage": "https://github.com/faithfulonoriobakpo/Image-Processing-API#readme",
+  "devDependencies": {
+    "typescript": "^4.9.4"
+  }
 }
