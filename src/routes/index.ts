@@ -22,7 +22,7 @@ routes.get('/images', async (req,res,next) => {
 
     try{
         if(!images.includes(`${imageName}.jpg`)) throw new ReferenceError("Request not found");
-        if(isNaN(resizeWidth) || isNaN(resizeHeight) ) throw new TypeError("Bad Request");
+        if(isNaN(resizeWidth) || isNaN(resizeHeight)) throw new TypeError("Bad Request");
 
         const filePath = `assets/thumbs/${imageName}x${resizeHeight}x${resizeWidth}.jpg`;
 
