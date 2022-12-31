@@ -14,7 +14,7 @@ const cachedImages: string[] = [];
 
 imageRoute.get('/images', async (req, res, next) => {
     const options = {
-        root: path.join(__dirname, '../../'),
+        root: path.join(__dirname, '../../../'),
         dotfiles: 'deny',
         headers: {
             'x-timestamp': Date.now(),
