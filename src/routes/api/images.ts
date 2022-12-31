@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import sharp from 'sharp';
 
-const routes = express.Router();
+const imageRoute = express.Router();
 const images: string[] = [
     'encenadaport.jpg',
     'fjord.jpg',
@@ -12,7 +12,7 @@ const images: string[] = [
 ];
 const cachedImages: string[] = [];
 
-routes.get('/images', async (req, res, next) => {
+imageRoute.get('/images', async (req, res, next) => {
     const options = {
         root: path.join(__dirname, '../../'),
         dotfiles: 'deny',
@@ -80,4 +80,4 @@ routes.get('/images', async (req, res, next) => {
     }
 });
 
-export default routes;
+export default imageRoute;
