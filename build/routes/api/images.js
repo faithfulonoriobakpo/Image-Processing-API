@@ -28,6 +28,7 @@ const cachedImages = [];
 const logRequests = (type, message) => __awaiter(void 0, void 0, void 0, function* () {
     const file = yield fs_1.promises.open('logs.txt', 'a+');
     yield file.write(`${type}: ${message}\n`);
+    file.close();
 });
 imageRoute.get('/images', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const options = {
@@ -46,6 +47,8 @@ imageRoute.get('/images', (req, res, next) => __awaiter(void 0, void 0, void 0, 
             throw new ReferenceError('Request not found');
         if (isNaN(resizeWidth) || isNaN(resizeHeight))
             throw new TypeError('Bad Request');
+        if (resizeWidth <= 0 || resizeHeight <= 0)
+            throw new RangeError("Height and Width value must be above 0");
         const filePath = `assets/thumbs/${imageName}x${resizeHeight}x${resizeWidth}.jpg`;
         if (cachedImages.includes(`${imageName}x${resizeHeight}x${resizeWidth}.jpg`)) {
             res.status(200).sendFile(filePath, options, (err) => {
@@ -78,6 +81,12 @@ imageRoute.get('/images', (req, res, next) => __awaiter(void 0, void 0, void 0, 
             logRequests('Error', `${err.message} at ${new Date()}`);
         }
         else if (err instanceof TypeError) {
+            res.status(400).json({
+                message: err.message,
+            });
+            logRequests('Error', `${err.message} at ${new Date()}`);
+        }
+        else if (err instanceof RangeError) {
             res.status(400).json({
                 message: err.message,
             });

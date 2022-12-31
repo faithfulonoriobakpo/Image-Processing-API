@@ -17,6 +17,7 @@ const cachedImages: string[] = [];
 const logRequests = async (type:string, message:string): Promise<void> => {
     const file = await fsPromises.open('logs.txt', 'a+');
     await file.write(`${type}: ${message}\n`);
+    file.close();
 }
 
 imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) => {
@@ -38,6 +39,8 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
             throw new ReferenceError('Request not found');
         if (isNaN(resizeWidth) || isNaN(resizeHeight))
             throw new TypeError('Bad Request');
+        if (resizeWidth <= 0 || resizeHeight <=0 )
+            throw new RangeError("Height and Width value must be above 0");
 
         const filePath = `assets/thumbs/${imageName}x${resizeHeight}x${resizeWidth}.jpg`;
 
@@ -83,7 +86,12 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
                 message: err.message,
             });
             logRequests('Error',`${err.message} at ${new Date()}`);
-        } else {
+        } else if (err instanceof RangeError) {
+            res.status(400).json({
+                message: err.message,
+            });
+            logRequests('Error',`${err.message} at ${new Date()}`);
+        }else {
             res.status(500).json({
                 message: 'Something went wrong internally',
             });

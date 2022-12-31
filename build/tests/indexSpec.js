@@ -24,6 +24,10 @@ describe('Test Endpoint Error Handling', () => {
         const response = yield request.get('/api/images?filename=fjord&width=2h0&height=3dt');
         expect(response.status).toBe(400);
     }));
+    it('Expects value <= 0 for width or height to return 400', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images?filename=fjord&width=-45&height=0');
+        expect(response.status).toBe(400);
+    }));
 });
 describe('Test Images Processing', () => {
     it('Expects correct image api call to return 200', () => __awaiter(void 0, void 0, void 0, function* () {
