@@ -1,0 +1,12 @@
+Image Processed: fjord.jpg was successfully
+                    processed to fjordx300x200.jpg at Sat Dec 31 2022 14:03:24 GMT+0100 (West Africa Standard Time)
+Error: Bad Request at Sat Dec 31 2022 14:03:28 GMT+0100 (West Africa Standard Time)
+Image Processed: fjord.jpg was successfully
+                    processed to fjordx300x200.jpg at Sat Dec 31 2022 14:03:31 GMT+0100 (West Africa Standard Time)
+Image Processed: fjord.jpg was successfully
+                    processed to fjordx900x200.jpg at Sat Dec 31 2022 14:03:36 GMT+0100 (West Africa Standard Time)
+Error: Request not found at Sat Dec 31 2022 14:03:42 GMT+0100 (West Africa Standard Time)
+Error: Request not found at Sat Dec 31 2022 14:05:25 GMT+0100 (West Africa Standard Time)
+Error: Bad Request at Sat Dec 31 2022 14:05:25 GMT+0100 (West Africa Standard Time)
+Image Processed: fjord.jpg was successfully processed to fjordx300x200.jpg at Sat Dec 31 2022 14:05:25 GMT+0100 (West Africa Standard Time)
+Image Processed: fjord.jpg was successfully processed to fjordx300x200.jpg at Sat Dec 31 2022 14:05:25 GMT+0100 (West Africa Standard Time)

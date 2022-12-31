@@ -1,6 +1,8 @@
 import express from 'express';
 import path from 'path';
 import sharp from 'sharp';
+import {promises as fsPromises} from "fs";
+import { Request, Response, NextFunction } from 'express';
 
 const imageRoute = express.Router();
 const images: string[] = [
@@ -12,7 +14,12 @@ const images: string[] = [
 ];
 const cachedImages: string[] = [];
 
-imageRoute.get('/images', async (req, res, next) => {
+const logRequests = async (type:string, message:string): Promise<void> => {
+    const file = await fsPromises.open('logs.txt', 'a+');
+    await file.write(`${type}: ${message}\n`);
+}
+
+imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) => {
     const options = {
         root: path.join(__dirname, '../../../'),
         dotfiles: 'deny',
@@ -42,8 +49,9 @@ imageRoute.get('/images', async (req, res, next) => {
             res.status(200).sendFile(filePath, options, (err) => {
                 if (err) {
                     next(err);
-                    // throw new Error(err.message);
+                    throw new Error(err.message);
                 }
+                logRequests('Image Processed',`${imageName}.jpg was successfully processed to ${imageName}x${resizeHeight}x${resizeWidth}.jpg at ${new Date()}`);
             });
         } else {
             await sharp(`assets/images/${imageName}.jpg`)
@@ -59,8 +67,9 @@ imageRoute.get('/images', async (req, res, next) => {
             res.status(200).sendFile(filePath, options, (err) => {
                 if (err) {
                     next(err);
-                    // throw new Error(err.message);
+                    throw new Error(err.message);
                 }
+                logRequests('Image Processed',`${imageName}.jpg was successfully processed to ${imageName}x${resizeHeight}x${resizeWidth}.jpg at ${new Date()}`);
             });
         }
     } catch (err) {
@@ -68,14 +77,17 @@ imageRoute.get('/images', async (req, res, next) => {
             res.status(404).json({
                 message: err.message,
             });
+            logRequests('Error',`${err.message} at ${new Date()}`);
         } else if (err instanceof TypeError) {
             res.status(400).json({
                 message: err.message,
             });
+            logRequests('Error',`${err.message} at ${new Date()}`);
         } else {
             res.status(500).json({
                 message: 'Something went wrong internally',
             });
+            logRequests('Error',`Something went wrong internally at ${new Date()}`);
         }
     }
 });
