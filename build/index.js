@@ -7,7 +7,8 @@ const express_1 = __importDefault(require("express"));
 const routes_1 = __importDefault(require("./routes"));
 const app = (0, express_1.default)();
 const port = 5000;
-app.use('/api', routes_1.default);
+app.use('/', routes_1.default);
 app.listen(port, () => {
     console.log(`Server successfully started on port ${port}`);
 });
+exports.default = app;
