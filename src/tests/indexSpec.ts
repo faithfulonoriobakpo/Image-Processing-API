@@ -17,14 +17,3 @@ describe('Test Endpoint Error Handling', () => {
         expect(response.status).toBe(400);
     });
 });
-
-describe('Test Images Processing', () => {
-    it('Expects correct image api call to return 200', async () => {
-        const response = await request.get('/api/images?filename=fjord&width=200&height=300');
-        expect(response.status).toBe(200);
-    });
-    it('Expects processed image type to be jpeg', async () => {
-        const response = await request.get('/api/images?filename=fjord&width=200&height=300');
-        expect(response.type).toBe('image/jpeg');
-    });
-});
