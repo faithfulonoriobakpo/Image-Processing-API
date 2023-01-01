@@ -1,3 +1,7 @@
 Error: Request not found at Sat Dec 31 2022 14:13:42 GMT+0100 (West Africa Standard Time)
 Error: Request not found at Sat Dec 31 2022 14:13:49 GMT+0100 (West Africa Standard Time)
 Image Processed: fjord.jpg was successfully processed to fjordx80x200.jpg at Sat Dec 31 2022 14:13:55 GMT+0100 (West Africa Standard Time)
+Image Processed: fjord.jpg was successfully processed to fjordx300x200.jpg at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
+Image Processed: fjord.jpg was successfully processed to fjordx300x200.jpg at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
+Error: Request not found at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
+Error: Bad Request at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
