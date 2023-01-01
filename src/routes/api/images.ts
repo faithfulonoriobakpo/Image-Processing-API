@@ -1,8 +1,8 @@
 import express from 'express';
 import path from 'path';
 import sharp from 'sharp';
-import {promises as fsPromises} from "fs";
 import { Request, Response, NextFunction } from 'express';
+import logRequests from '../../utilities/logger';
 
 const imageRoute = express.Router();
 const images: string[] = [
@@ -13,12 +13,6 @@ const images: string[] = [
     'santamonica.jpg',
 ];
 const cachedImages: string[] = [];
-
-const logRequests = async (type:string, message:string): Promise<void> => {
-    const file = await fsPromises.open('logs.txt', 'a+');
-    await file.write(`${type}: ${message}\n`);
-    file.close();
-}
 
 imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) => {
     const options = {
