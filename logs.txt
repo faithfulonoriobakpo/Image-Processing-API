@@ -5,3 +5,8 @@ Image Processed: fjord.jpg was successfully processed to fjordx300x200.jpg at Su
 Image Processed: fjord.jpg was successfully processed to fjordx300x200.jpg at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
 Error: Request not found at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
 Error: Bad Request at Sun Jan 01 2023 22:25:17 GMT+0100 (West Africa Standard Time)
+Error: Something went wrong internally at Sun Jan 01 2023 22:53:34 GMT+0100 (West Africa Standard Time)
+Error: Something went wrong internally at Sun Jan 01 2023 22:53:34 GMT+0100 (West Africa Standard Time)
+Error: Request not found at Sun Jan 01 2023 22:53:34 GMT+0100 (West Africa Standard Time)
+Error: Bad Request at Sun Jan 01 2023 22:53:34 GMT+0100 (West Africa Standard Time)
+Error: Height and Width value must be above 0 at Sun Jan 01 2023 22:53:34 GMT+0100 (West Africa Standard Time)
