@@ -38,8 +38,9 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
         if (resizeWidth <= 0 || resizeHeight <=0 )
             throw new RangeError("Height and Width value must be above 0");
 
-        const filePath = `assets/thumbs/${imageName}x${resizeHeight}x${resizeWidth}.jpg`;
-        const thumbsDirectory = path.resolve(__dirname, '../../assets/thumbs');
+        const thumbsDirectory = path.join(__dirname, '../../../assets/thumbs');
+        const filePath = `${thumbsDirectory}/${imageName}x${resizeHeight}x${resizeWidth}.jpg`;
+
         if(!fs.existsSync(thumbsDirectory)) await fsPromises.mkdir(thumbsDirectory);
 
         if (
