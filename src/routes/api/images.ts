@@ -59,7 +59,7 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
 
         } else {
 
-            await processImage(imageName, resizeWidth, resizeHeight);
+            await processImage(imageName, resizeHeight, resizeWidth);
 
             cachedImages.push(
                 `${imageName}x${resizeHeight}x${resizeWidth}.jpg`
