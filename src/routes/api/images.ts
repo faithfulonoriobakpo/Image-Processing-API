@@ -1,7 +1,9 @@
 import express from 'express';
+import fs from "fs";
+import {promises as fsPromises} from "fs";
 import path from 'path';
-import sharp from 'sharp';
 import { Request, Response, NextFunction } from 'express';
+import processImage from '../../utilities/image-processor';
 import logRequests from '../../utilities/logger';
 
 const imageRoute = express.Router();
@@ -26,7 +28,7 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
 
     const resizeWidth = Number(req.query.width);
     const resizeHeight = Number(req.query.height);
-    const imageName = req.query.filename;
+    const imageName: string = req.query.filename as string;
 
     try {
         if (!images.includes(`${imageName}.jpg`))
@@ -37,6 +39,8 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
             throw new RangeError("Height and Width value must be above 0");
 
         const filePath = `assets/thumbs/${imageName}x${resizeHeight}x${resizeWidth}.jpg`;
+        const thumbsDirectory = path.resolve(__dirname, '../../assets/thumbs');
+        if(!fs.existsSync(thumbsDirectory)) await fsPromises.mkdir(thumbsDirectory);
 
         if (
             cachedImages.includes(
@@ -48,14 +52,13 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
                     next(err);
                     throw new Error(err.message);
                 }
-                logRequests('Image Processed',`${imageName}.jpg was successfully processed to ${imageName}x${resizeHeight}x${resizeWidth}.jpg at ${new Date()}`);
             });
+
+            logRequests('Image Processed',`${imageName}.jpg was successfully processed to ${imageName}x${resizeHeight}x${resizeWidth}.jpg at ${new Date()}`);
+
         } else {
-            await sharp(`assets/images/${imageName}.jpg`)
-                .resize({ width: resizeWidth, height: resizeHeight })
-                .toFile(
-                    `assets/thumbs/${imageName}x${resizeHeight}x${resizeWidth}.jpg`
-                );
+
+            await processImage(imageName, resizeWidth, resizeHeight);
 
             cachedImages.push(
                 `${imageName}x${resizeHeight}x${resizeWidth}.jpg`
@@ -66,8 +69,10 @@ imageRoute.get('/images', async (req: Request, res:Response, next:NextFunction) 
                     next(err);
                     throw new Error(err.message);
                 }
-                logRequests('Image Processed',`${imageName}.jpg was successfully processed to ${imageName}x${resizeHeight}x${resizeWidth}.jpg at ${new Date()}`);
             });
+
+            logRequests('Image Processed',`${imageName}.jpg was successfully processed to ${imageName}x${resizeHeight}x${resizeWidth}.jpg at ${new Date()}`);
+
         }
     } catch (err) {
         if (err instanceof ReferenceError) {
