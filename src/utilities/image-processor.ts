@@ -1,6 +1,6 @@
 import sharp from "sharp";
 
-const processImage = async (imageName:string, resizeWidth:number, resizeHeight: number): Promise<void> => {
+const processImage = async (imageName:string, resizeHeight: number, resizeWidth:number): Promise<void> => {
 
     await sharp(`assets/images/${imageName}.jpg`)
                 .resize({ width: resizeWidth, height: resizeHeight })
